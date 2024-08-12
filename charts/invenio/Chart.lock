@@ -1,15 +1,15 @@
 dependencies:
 - name: opensearch
-  repository: oci://registry-1.docker.io/bitnamicharts
-  version: 1.0.0
+  repository: https://opensearch-project.github.io/helm-charts
+  version: 2.21.0
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 14.0.1
+  version: 15.5.20
 - name: rabbitmq
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 12.9.3
+  version: 14.6.6
 - name: redis
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 18.12.0
-digest: sha256:3ac2847b6669249bb61e95d76a85ab74de27ed50ddbd91b7634e428cff148c19
-generated: "2024-03-22T08:00:00.66529083+01:00"
+  version: 19.6.4
+digest: sha256:0ecb1b4eb7d165ebd66869601f5b0ac12a86224ee2e3b6a3406b69a59e95825a
+generated: "2024-08-09T10:48:57.725257792+02:00"

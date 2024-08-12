@@ -133,7 +133,7 @@
 */}}
 {{- define "invenio.opensearch.hostname" -}}
   {{- if .Values.opensearch.enabled }}
-    {{- include "opensearch.service.name" .Subcharts.opensearch -}}
+    {{- include "opensearch.serviceName" .Subcharts.opensearch -}}
   {{- else }}
     {{- required "Missing .Values.opensearchExternal.hostname" .Values.opensearchExternal.hostname -}}
   {{- end }}

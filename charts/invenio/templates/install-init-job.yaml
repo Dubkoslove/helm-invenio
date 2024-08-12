@@ -10,9 +10,9 @@ metadata:
     "helm.sh/hook": post-install
     "helm.sh/hook-weight": "1"
 {{/*    "helm.sh/hook-delete-policy": hook-succeeded*/}}
-{{- $cmd := "invenio db init && invenio db create && invenio index init && invenio index queue init purge && invenio files location --default 'default-location'  $(invenio shell --no-term-title -c \"print(app.instance_path)\")'/data' && invenio roles create admin && invenio access allow superuser-access role admin" -}}
+{{- $cmd := "invenio db init && invenio db create && invenio index init && invenio index queue init purge && invenio oarepo cf init && invenio oarepo index reindex && invenio files location --default 'default-location' $(invenio shell --no-term-title -c \"print(app.instance_path)\")'/data' && invenio roles create admin && invenio access allow superuser-access role admin" -}}
 {{- range $usr, $pass := .Values.invenio.default_users -}}
-  {{- $cmd = printf "%s && invenio users create --active --password=%s %s" $cmd $pass $usr -}}
+  {{- $cmd = printf "%s && invenio users create --active --password=%s %s && invenio roles add %s admin && kubectl create secret generic token-admin --from-literal=admin_token=$(invenio tokens create -n admin_token -u %s -i)" $cmd $pass $usr $usr $usr -}}
 {{- end -}}
 {{- if and .Values.invenio.demo_data .Values.invenio.default_users -}}
   {{- $cmd = cat $cmd "&& invenio rdm-records demo" -}}
